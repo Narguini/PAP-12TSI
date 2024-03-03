@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS `avaliacao` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `id_projeto` INT NOT NULL,
+    `nota` INT NOT NULL,
+    `name` varchar(255) NOT NULL,
+    `cargo` varchar(25) NOT NULL,
+    FOREIGN KEY (id_projeto) REFERENCES paps(id),
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
