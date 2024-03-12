@@ -13,10 +13,10 @@ $aluno2 = isset($_POST['aluno2']) ? $_POST['aluno2'] : null;
 $nome_professor =  $_POST['nome_professor'];
 $data_inicio =  $_POST['data_inicio'];
 $data_entrega =  $_POST['data_entrega'];
-$avaliacao_final =  $_POST['avaliacao_final'];
 
-$stmt = $conn->prepare("INSERT INTO paps(titulo,descricao,aluno1,aluno2,nome_professor,data_inicio,data_entrega,avaliacao_final) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssssssi", $titulo, $descricao, $aluno1, $aluno2, $nome_professor, $data_inicio, $data_entrega, $avaliacao_final);
+
+$stmt = $conn->prepare("INSERT INTO paps(titulo,descricao,aluno1,aluno2,nome_professor,data_inicio,data_entrega) VALUES (?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("sssssss", $titulo, $descricao, $aluno1, $aluno2, $nome_professor, $data_inicio, $data_entrega);
 
         if ($stmt->execute()){
             $stmt->close();

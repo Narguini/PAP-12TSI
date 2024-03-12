@@ -40,23 +40,26 @@ $projeto = $stmt->get_result();
 			<table class="">
                 <thead>
                     <tr>
-                        <th>titulo</th>
-                        <th>descricao</th>
-                        <th>cargo</th>
+                        <th>Titulo</th>
+                        <th>Descricao</th>
+                        <th>Cargo</th>
                         <th>Nome do professor</th>
-                        <th>data de inicio</th>
-                        <th>data de entrega</th>
+                        <th>Data de inicio</th>
+                        <th>Data de entrega</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
                     <?php while ($row = $projeto->fetch_assoc()): ?>
-                        <tr>
-                          <td><?php echo $row['titulo'];?></td>
-						  <td><?php echo $row['descricao'];?></td>
-						  <td><?php echo $row['cargo'];?></td>
-						  <td><?php echo $row['nome_professor'];?></td>
-						  <td><?php echo $row['data_inicio'];?></td>
-						  <td><?php echo $row['data_entrega'];?></td>
+                        <td>
+							<a href="projeto.php?id_paps=<?php echo $row['id_paps']; ?>">
+							<?php echo htmlspecialchars($row['titulo'], ENT_QUOTES, 'UTF-8');?>
+					</a>
+					</td>
+						  <td><?php echo htmlspecialchars($row['descricao'], ENT_QUOTES, 'UTF-8');?></td>
+						  <td><?php echo htmlspecialchars($row['cargo'], ENT_QUOTES, 'UTF-8');?></td>
+						  <td><?php echo htmlspecialchars($row['nome_professor'], ENT_QUOTES, 'UTF-8');?></td>
+						  <td><?php echo htmlspecialchars($row['data_inicio'], ENT_QUOTES, 'UTF-8');?></td>
+						  <td><?php echo htmlspecialchars($row['data_entrega'], ENT_QUOTES, 'UTF-8');?></td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>
