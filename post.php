@@ -86,11 +86,11 @@ $projeto = $stmt->get_result();
 						<div class="flex flex-col gap-3">
 							<label  class="text-white font-medium" for="descricao">Descrição:</label>
 							<textarea rows="4" id="descricao" name="descricao" class="py-2 px-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm outline-none focus:ring-0"></textarea>
-						</div>
-						
-						<button type="button" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-1/5 ml-auto py-2 px-3 text-white font=medium rounded-md ">
-							Publicar
-						</button>
+					</div>
+					
+					<button type="submit" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-1/5 ml-auto py-2 px-3 text-white font=medium rounded-md ">
+						Publicar
+					</button>
 					</form>
 				</div>
 			</div>

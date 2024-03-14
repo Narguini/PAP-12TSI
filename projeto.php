@@ -10,13 +10,12 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 }
-echo  $_GET['id_paps'];
+//echo  $_GET['id_paps'];
 $sql = "SELECT * FROM paps WHERE id_paps = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $_GET['id_paps']);
 $stmt->execute();
-$result = $stmt->get_result();
-$project = $result->fetch_assoc();
+
 if(!$stmt) {
 	echo "Error: " . $conn->error;
 	exit;
@@ -24,9 +23,10 @@ if(!$stmt) {
 if(!$stmt->execute()) {
 	echo "Error: " . $stmt->error;
 	exit;
-  }
-$projeto = $stmt->get_result();
+}
 
+$result = $stmt->get_result();
+$projeto = $result->fetch_assoc();
 ?>
 
 <!DOCTYPE html>
@@ -38,8 +38,10 @@ $projeto = $stmt->get_result();
 	<script defer src="https://cdn.tailwindcss.com"></script>
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
-<body>
-<?php include('includes/nav.php'); ?>   
-
-</body>
+	<body>
+		<?php include('includes/nav.php'); ?> 
+		<div class="container mx-auto p-4">  
+			<h1 class="text-white"><?php echo $projeto['titulo'];?></h1>
+		</div>
+	</body>
 </html>
