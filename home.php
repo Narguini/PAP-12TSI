@@ -59,7 +59,7 @@ function formatDates($sDate, $eDate) {
 		<title>Página Inicial</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css">
 		<script defer src="https://cdn.tailwindcss.com"></script>
-
+		<script defer type="text/javascript" rel="script" src="scripts/main.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	</head>
 	<body class="loggedin">
@@ -85,6 +85,15 @@ function formatDates($sDate, $eDate) {
 									<path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2q.425 0 .713.288T8 3v1h8V3q0-.425.288-.712T17 2q.425 0 .713.288T18 3v1h1q.825 0 1.413.588T21 6v4.675q0 .425-.288.713t-.712.287q-.425 0-.712-.288T19 10.676V10H5v10h5.8q.425 0 .713.288T11.8 21q0 .425-.288.713T10.8 22zm13 1q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23m.5-5.2v-2.3q0-.2-.15-.35T18 15q-.2 0-.35.15t-.15.35v2.275q0 .2.075.388t.225.337l1.525 1.525q.15.15.35.15t.35-.15q.15-.15.15-.35t-.15-.35z"/>
 								</svg>
 								<?php echo formatDates(htmlspecialchars($row['data_inicio'], ENT_QUOTES, 'UTF-8'), htmlspecialchars($row['data_entrega'], ENT_QUOTES, 'UTF-8'));?>
+							</div>
+							<div class="flex items-center gap-x-2 text-gray-400 text-regular -ml-0.5 mt-2">
+								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M9.5 1.5H11a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1h1.5"/>
+									<rect width="5" height="2.5" x="4.5" y=".5" rx="1"/><path d="M4.5 5.5h5M4.5 8h5m-5 2.5h5"/></g>
+								</svg>
+								<span class="<?php echo $row['avaliacao_final'] > 9.5 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'; ?>" id="grade">
+									<?php echo htmlspecialchars($row['avaliacao_final'], ENT_QUOTES, 'UTF-8');?>
+								</span>
 							</div>
 							<p class="mt-6 text-gray-700 font-medium mt-6"><?php trimStr(htmlspecialchars($row['descricao'], ENT_QUOTES, 'UTF-8'));?></p>
 						</div>

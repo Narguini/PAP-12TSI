@@ -1,7 +1,8 @@
 <?php
+session_start();
 include('../includes/connection.php');
 
-if (isset($_SESSION['loggedin'])) {
+if (!isset($_SESSION['loggedin'])) {
 	header('Location: ../index.html');
 	exit;
 }    
@@ -13,10 +14,12 @@ $aluno2 = isset($_POST['aluno2']) ? $_POST['aluno2'] : null;
 $nome_professor =  $_POST['nome_professor'];
 $data_inicio =  $_POST['data_inicio'];
 $data_entrega =  $_POST['data_entrega'];
+$role = $_SESSION['cargo'];
 
 
-$stmt = $conn->prepare("INSERT INTO paps(titulo,descricao,aluno1,aluno2,nome_professor,data_inicio,data_entrega) VALUES (?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssssss", $titulo, $descricao, $aluno1, $aluno2, $nome_professor, $data_inicio, $data_entrega);
+
+$stmt = $conn->prepare("INSERT INTO paps(titulo,descricao,cargo,aluno1,aluno2,nome_professor,data_inicio,data_entrega) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssssss", $titulo, $descricao, $role, $aluno1, $aluno2, $nome_professor, $data_inicio, $data_entrega);
 
         if ($stmt->execute()){
             $stmt->close();
