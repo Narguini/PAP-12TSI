@@ -36,16 +36,11 @@ $projeto = $stmt->get_result();
 		<div class="container mx-auto p-4 mt-12">
 			<div class="grid grid-cols-3 gap-6">
 				<div class="col-span-1">
-					<h1 class="text-white text-2xl font-semibold">Create a new project</h1>
+					<h1 class="text-white text-2xl font-semibold">Criar um novo projeto</h1>
 					<p class="text-gray-400 mt-3 font-medium">
-						<!-- some description that summarizes the forms purpose here -->
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Iste dolorem earum quis corrupti at deleniti optio vel consequatur, 
-						laborum esse autem placeat incidunt amet expedita aut, enim eos non velit.
+					
   						<br/><br/>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-						Iste dolorem earum quis corrupti at deleniti optio vel consequatur, 
-						laborum esse autem placeat incidunt amet expedita aut, enim eos non velit.
+						
 					</p>
 				</div>
 				<div class="col-span-2">
@@ -62,7 +57,7 @@ $projeto = $stmt->get_result();
 							</div>
 
 							<div class="flex flex-col gap-3 w-2/5">
-								<label class="text-white font-medium" for="aluno1">Nome do Aluno:</label>
+								<label class="text-white font-medium" for="aluno1">Nome do Segundo Aluno:</label>
 								<input type="text" id="aluno2" name="aluno2" class="py-2 px-2 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm outline-none focus:ring-0">
 							</div>
 				

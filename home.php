@@ -47,7 +47,7 @@ function formatDates($sDate, $eDate) {
 	$endDate = date_create($eDate);
 
 	if($startDate && $endDate) {
-		echo date_format($startDate,"m/d/Y") . " - " . date_format($endDate,"m/d/Y"); 
+		echo date_format($startDate,"d/m/Y") . " - " . date_format($endDate,"d/m/Y"); 
 	}
 }
 ?>
@@ -97,8 +97,8 @@ function formatDates($sDate, $eDate) {
 							</div>
 							<p class="mt-6 text-gray-700 font-medium mt-6"><?php trimStr(htmlspecialchars($row['descricao'], ENT_QUOTES, 'UTF-8'));?></p>
 						</div>
-						<a href="projeto.php?id_paps=<?php echo $row['id_paps']; ?>" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-2/4 py-2 px-3 text-white font=medium rounded-md text-center">
-							View project
+						<a href="projeto.php?id_paps=<?php echo $row['id_paps']; ?>" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-full lg:w-2/4  py-2 px-3 text-white font=medium rounded-md text-center">
+							Avaliar
 						</a>
 					</div>
 				<?php endwhile; ?>

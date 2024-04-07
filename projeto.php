@@ -43,5 +43,13 @@ $projeto = $result->fetch_assoc();
 		<div class="container mx-auto p-4">  
 			<h1 class="text-white"><?php echo $projeto['titulo'];?></h1>
 		</div>
+	<form action="actions/insert.php" method="POST" class="text-white">
+		<input type="hidden" value="<?php echo $projeto['id_paps']; ?>" name="id"/>
+        <label for="avaliacao">Avaliação:</label><br>
+        <input type="text" id="avaliacao" name="avaliacao"><br>
+		<button type="submit" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-1/5 ml-auto py-2 px-3 text-white font=medium rounded-md ">
+			submit
+		</button>
+	</form>
 	</body>
 </html>
