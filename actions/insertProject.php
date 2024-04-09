@@ -23,7 +23,7 @@ $stmt->bind_param("ssssssss", $titulo, $descricao, $role, $aluno1, $aluno2, $nom
 
         if ($stmt->execute()){
             $stmt->close();
-            header('Location:../home.php');
+            header('Location: ../pages/home.php');
         }
          else {
             $stmt->close();

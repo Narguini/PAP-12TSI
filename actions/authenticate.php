@@ -27,7 +27,7 @@ if ($stmt = $conn->prepare('SELECT id, password, cargo FROM utilizadores WHERE e
             $_SESSION['email'] = $_POST['email'];
             $_SESSION['id'] = $id;
             $_SESSION['cargo'] = $cargo;
-            header('Location: ../home.php');
+            header('Location: ../pages/home.php');
         } else {
             
             echo 'Nome ou password incorreta!';

@@ -42,7 +42,7 @@ CREATE TABLE `avaliacao` (
 --
 
 CREATE TABLE `paps` (
-  `id_paps` int(11) NOT NULL,
+  `id_paps` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `titulo` varchar(255) NOT NULL,
   `descricao` mediumtext NOT NULL,
   `cargo` varchar(255) NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `paps` (
   `data_inicio` date NOT NULL,
   `data_entrega` date NOT NULL,
   `avaliacao_final` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `paps`
@@ -75,14 +75,14 @@ CREATE TABLE `utilizadores` (
   `password` varchar(255) NOT NULL,
   `email` varchar(100) NOT NULL,
   `cargo` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `utilizadores`
 --
 
 INSERT INTO `utilizadores` (`id`, `nome`, `password`, `email`, `cargo`) VALUES
-(1, 'admin', '$2a$12$DCMmLk0wfzmarNbDkcjSKur4CLN/cuSyMbyUA3H7Pn87CVOWs5/wK', 'admin@esfh.pt', 'admin'),
+(1, 'test', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'test@test.com')
 (2, 'secondUser', '$2y$10$SfhYIDtn.iOuCW7zfoFLuuZHX6lja4lF4XA4JqNmpiH/.P3zB8JCa', 'example@example.com', '');
 
 --

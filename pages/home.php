@@ -2,11 +2,11 @@
 
 session_start();
 
-include('includes/connection.php');
+include('../includes/connection.php');
 
 
 if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
+	header('Location: ../index.html');
 	exit;
 
 
@@ -57,19 +57,17 @@ function formatDates($sDate, $eDate) {
 	<head>
 		<meta charset="utf-8">
 		<title>Página Inicial</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css">
+		<link href="../css/style.css" rel="stylesheet" type="text/css">
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script defer type="text/javascript" rel="script" src="scripts/main.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	</head>
 	<body class="loggedin">
 		<?php
-		include('includes/nav.php');
+		include('../includes/nav.php');
 		?>
 		<div class="container mx-auto mt-12 p-4">
 			<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12">
 				<?php while ($row = $projeto->fetch_assoc()): ?>
-					<div class="p-6 bg-white rounded-md border-l-8 border-blue-500 flex flex-col gap-3 justify-between h-54">
+					<div class="p-6 bg-white rounded-md border border-black flex flex-col gap-3 justify-between h-54">
 						<div class="flex flex-col">
 							<h2 class="text-gray-900 text-2xl font-semibold"><?php echo htmlspecialchars($row['titulo'], ENT_QUOTES, 'UTF-8');?></h2>
 							<div class="text-regular text-gray-400 mt-2 flex items-center gap-x-3">
@@ -77,27 +75,14 @@ function formatDates($sDate, $eDate) {
 								<?php echo formatStudents(htmlspecialchars($row['aluno1'], ENT_QUOTES, 'UTF-8'), htmlspecialchars($row['aluno2'], ENT_QUOTES, 'UTF-8'));?>
 							</div>
 							<div class="text-regular text-gray-400 mt-2 flex items-center gap-x-3 -ml-1">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12q-1.65 0-2.825-1.175T8 8q0-1.65 1.175-2.825T12 4q1.65 0 2.825 1.175T16 8q0 1.65-1.175 2.825T12 12m-8 8v-2.8q0-.85.438-1.562T5.6 14.55q1.55-.775 3.15-1.162T12 13q1.65 0 3.25.388t3.15 1.162q.725.375 1.163 1.088T20 17.2V20z"/></svg>
-								<?php echo htmlspecialchars($row['nome_professor'], ENT_QUOTES, 'UTF-8');?>
-							</div>
-							<div class="text-regular text-gray-400 mt-2 flex items-center gap-x-3 -ml-1">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24">
 									<path fill="currentColor" d="M5 22q-.825 0-1.412-.587T3 20V6q0-.825.588-1.412T5 4h1V3q0-.425.288-.712T7 2q.425 0 .713.288T8 3v1h8V3q0-.425.288-.712T17 2q.425 0 .713.288T18 3v1h1q.825 0 1.413.588T21 6v4.675q0 .425-.288.713t-.712.287q-.425 0-.712-.288T19 10.676V10H5v10h5.8q.425 0 .713.288T11.8 21q0 .425-.288.713T10.8 22zm13 1q-2.075 0-3.537-1.463T13 18q0-2.075 1.463-3.537T18 13q2.075 0 3.538 1.463T23 18q0 2.075-1.463 3.538T18 23m.5-5.2v-2.3q0-.2-.15-.35T18 15q-.2 0-.35.15t-.15.35v2.275q0 .2.075.388t.225.337l1.525 1.525q.15.15.35.15t.35-.15q.15-.15.15-.35t-.15-.35z"/>
 								</svg>
 								<?php echo formatDates(htmlspecialchars($row['data_inicio'], ENT_QUOTES, 'UTF-8'), htmlspecialchars($row['data_entrega'], ENT_QUOTES, 'UTF-8'));?>
 							</div>
-							<div class="flex items-center gap-x-2 text-gray-400 text-regular -ml-0.5 mt-2">
-								<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 14 14"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-									<path d="M9.5 1.5H11a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-10a1 1 0 0 1 1-1h1.5"/>
-									<rect width="5" height="2.5" x="4.5" y=".5" rx="1"/><path d="M4.5 5.5h5M4.5 8h5m-5 2.5h5"/></g>
-								</svg>
-								<span class="<?php echo $row['avaliacao_final'] > 9.5 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'; ?>" id="grade">
-									<?php echo htmlspecialchars($row['avaliacao_final'], ENT_QUOTES, 'UTF-8');?>
-								</span>
-							</div>
 							<p class="mt-6 text-gray-700 font-medium mt-6"><?php trimStr(htmlspecialchars($row['descricao'], ENT_QUOTES, 'UTF-8'));?></p>
 						</div>
-						<a href="projeto.php?id_paps=<?php echo $row['id_paps']; ?>" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-full lg:w-2/4  py-2 px-3 text-white font=medium rounded-md text-center">
+						<a href="projeto.php?id_paps=<?php echo $row['id_paps']; ?>" class="bg-blue-500 hover:bg-blue-600 transition-all duration-150 ease-in-out w-full lg:w-2/4  py-2 px-3 text-white font-medium rounded-md text-center">
 							Avaliar
 						</a>
 					</div>
