@@ -1,5 +1,17 @@
-<?php 
-session_start()
+<?php
+include ('../includes/connection.php'); 
+session_start();
+
+$stmt = $conn->prepare("SELECT * FROM utilizadores");
+if(!$stmt) {
+    echo "Error: " . $conn->error;
+    exit;
+}
+if(!$stmt->execute()) {
+    echo "Error: " . $stmt->error;
+    exit;
+  }
+$result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +23,8 @@ session_start()
 	<link href="../css/style.css" rel="stylesheet" type="text/css">
 </head>
 	<body>
-		<?php include('../includes/nav.php'); ?> 
+    <?php include('../includes/nav.php'); ?> 
+		
 		<div class="container mx-auto p-4"> 
             <div class="flex items-center justify-between">
                 <h1 class="text-gray-900 text-2xl font-semibold">Gerir Utilizadores</h1>
@@ -36,37 +49,39 @@ session_start()
                                 Nome
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                Role
+                                Cargo
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Edit</span>
+                                <span class="sr-only">Editar</span>
                             </th>
                             <th scope="col" class="px-6 py-3">
-                                <span class="sr-only">Delete</span>
+                                <span class="sr-only">Eliminar</span>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                    <?php while ($row = $result->fetch_assoc()): ?>
                         <tr class="bg-white border-b hover:bg-gray-50 text-gray-900">
                             <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
-                                1
+                            <?php echo htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8');?>
                             </th>
                             <td class="px-6 py-4">
-                                test@test.com
+                            <?php echo htmlspecialchars($row['email'], ENT_QUOTES, 'UTF-8');?>
                             </td>
                             <td class="px-6 py-4">
-                                Angela Rodriguez
+                            <?php echo htmlspecialchars($row['nome'], ENT_QUOTES, 'UTF-8');?>
                             </td>
                             <td class="px-6 py-4">
-                                Admin
+                            <?php echo htmlspecialchars($row['cargo'], ENT_QUOTES, 'UTF-8');?>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                                <a href="#" class="font-medium text-blue-600 hover:underline">Editar</a>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <a href="#" class="font-medium text-red-600 hover:underline">Delete</a>
+                                <a href="#" class="font-medium text-red-600 hover:underline">Eliminar</a>
                             </td>
                         </tr>
+                        <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>
