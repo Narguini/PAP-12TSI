@@ -69,7 +69,9 @@ function formatDates($sDate, $eDate) {
 				<?php while ($row = $projeto->fetch_assoc()): ?>
 					<div class="p-6 bg-white rounded-md border border-black flex flex-col gap-3 justify-between h-54">
 						<div class="flex flex-col">
-							<h2 class="text-gray-900 text-2xl font-semibold"><?php echo htmlspecialchars($row['titulo'], ENT_QUOTES, 'UTF-8');?></h2>
+							<h2 class="text-gray-900 text-2xl font-semibold">
+                                <?php echo htmlspecialchars($row['titulo'], ENT_QUOTES, 'UTF-8');?>
+                            </h2>
 							<div class="text-regular text-gray-400 mt-2 flex items-center gap-x-3">
 								<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 15 15"><path fill="currentColor" d="M5.5 0a3.499 3.499 0 1 0 0 6.996A3.499 3.499 0 1 0 5.5 0m-2 8.994a3.5 3.5 0 0 0-3.5 3.5v2.497h11v-2.497a3.5 3.5 0 0 0-3.5-3.5zm9 1.006H12v5h3v-2.5a2.5 2.5 0 0 0-2.5-2.5"/><path fill="currentColor" d="M11.5 4a2.5 2.5 0 1 0 0 5a2.5 2.5 0 0 0 0-5"/></svg>
 								<?php echo formatStudents(htmlspecialchars($row['aluno1'], ENT_QUOTES, 'UTF-8'), htmlspecialchars($row['aluno2'], ENT_QUOTES, 'UTF-8'));?>

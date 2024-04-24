@@ -13,7 +13,6 @@ if (!isset($_SESSION['loggedin'])) {
 $sql = "SELECT * FROM paps WHERE id_paps = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $_GET['id_paps']);
-$stmt->execute();
 
 if(!$stmt) {
 	echo "Error: " . $conn->error;
@@ -50,13 +49,13 @@ function formatDates($sDate, $eDate) {
 		<?php include('../includes/nav.php'); ?> 
 		<div class="container mx-auto p-4">  
             <div class="flex gap-6 items-start justify-start">
-                <a href="home.php" class="flex gap-2 items-center border border-black bg-white transition-all duration-150 ease-in-out py-2 px-3 text-gray-900 font-medium rounded-full mr-auto w-36">
+                <a href="home.php" class="flex gap-2 items-center border border-black bg-white transition-all duration-150 ease-in-out py-2 px-3 text-gray-900 font-medium rounded-full mr-auto w-34">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24">
                         <path fill="currentColor" d="m3.55 12l7.35 7.35q.375.375.363.875t-.388.875q-.375.375-.875.375t-.875-.375l-7.7-7.675q-.3-.3-.45-.675T.825 12q0-.375.15-.75t.45-.675l7.7-7.7q.375-.375.888-.363t.887.388q.375.375.375.875t-.375.875z"/>
                     </svg>
-                    Go back
+                    Back
                 </a>
-                <div class="flex items-start gap-3 text-gray-900 w-full">
+                <div class="flex flex-col md:flex-row items-start gap-3 text-gray-900 w-full">
                     <div class="flex flex-col border border-black rounded-md p-3 bg-white gap-y-6">
                         <h1 class="text-gray-900 text-4xl font-semibold"><?php echo $projeto['titulo'];?></h1>
                        <!-- Due date -->
