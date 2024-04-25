@@ -10,7 +10,7 @@ $stmt = $conn->prepare("INSERT INTO avaliacao(avaliacao, user_id, id_paps) VALUE
 $stmt->bind_param("iii", $avaliacao, $userId, $postId);
         if ($stmt->execute()){
             $stmt->close();
-            header('Location:../pages/home.php');
+            header('Location:../pages/projeto.php?id_paps='.$postId);
         }
          else {
             $stmt->close();

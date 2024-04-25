@@ -10,16 +10,26 @@ if (!isset($_SESSION['loggedin'])) {
 
 
 }
+
+$q = "SELECT avaliacao from avaliacao WHERE id_paps = ? Order by id_avaliacao Desc";
+$statement = $conn->prepare($q);
+$statement->bind_param('i', $_GET['id_paps']);
+
+if(!$statement || !$statement->execute()) {
+	echo "Error: " . $conn->error;
+	exit;
+}
+
+$res = $statement->get_result();
+$grade = $res->fetch_assoc();
+
+
 $sql = "SELECT * FROM paps WHERE id_paps = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param('i', $_GET['id_paps']);
 
-if(!$stmt) {
+if(!$stmt || !$stmt->execute()) {
 	echo "Error: " . $conn->error;
-	exit;
-}
-if(!$stmt->execute()) {
-	echo "Error: " . $stmt->error;
 	exit;
 }
 
@@ -98,9 +108,17 @@ function formatDates($sDate, $eDate) {
 							<span class="<?php echo $projeto['avaliacao_final'] > 9.5 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'; ?>" id="grade">
 								<?php echo htmlspecialchars($projeto['avaliacao_final'], ENT_QUOTES, 'UTF-8');?>
 							</span>
-                        </div>  
+                        </div> 
                         <div>
-                            <form action="actions/insert.php" method="POST" class="text-white flex flex-col">
+                            <h3 class="flex items-center gap-1 font-semibold">
+                                Latest student grade: 
+                                <span class="<?php echo $grade['avaliacao'] > 9.5 ? 'text-green-600 font-semibold' : 'text-red-500 font-semibold'; ?>">
+                                    <?php echo $grade['avaliacao']; ?>
+                                </span>
+                            </h3>
+                        </div>
+                        <div>
+                            <form action="../actions/insert.php" method="POST" class="text-white flex flex-col">
                                 <input type="hidden" value="<?php echo $projeto['id_paps']; ?>" name="id"/>
                                 <label for="avaliacao" class="text-gray-900 font-semibold">Avaliação:</label>
                                 <input type="text" id="avaliacao" name="avaliacao" class="bg-gray-50 border border-black text-gray-900 sm:text-sm rounded-lg focus:ring-0 block w-full p-2.5 focus-ring-0 outline-none" placeholder="Enter grade">
@@ -109,6 +127,7 @@ function formatDates($sDate, $eDate) {
                                 </button>
                             </form>
                         </div>
+                       
                     </div>
                     <!-- Description -->
                     <div class="flex flex-col border border-black rounded-md p-3 bg-white max-w-5xl">

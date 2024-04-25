@@ -12,16 +12,17 @@ $password = $_POST['password'];
 $name = $_POST['nome'];
 $role = $_POST['cargo'];
 
-$query = "SELECT id FROM utilizadores WHERE email = ?";
+$query = "SELECT id, email FROM utilizadores WHERE email = ? AND id != ?";
 $stmt = $conn->prepare($query);
-$stmt->bind_param('s', $_POST['email']);
+$stmt->bind_param('si', $_POST['email'], $_POST['id']);
 if(!$stmt || !$stmt->execute()) {
     echo "Error: " . $conn->error;
     exit;
 }
 
 $stmt->store_result();
-if ($stmt->num_rows > 0) {
+
+if ($stmt->num_rows > 0 ) {
     echo 'Email já existe';
     exit;
 } else {
